@@ -4,8 +4,8 @@ body {
     rgb(211, 141, 196) 0%,
     rgb(211, 141, 196) 3%,
     rgb(211, 141, 196) 3%,
-    rgb(211, 141, 196) 19%,
-    rgb(139, 102, 241) 100%
+    rgb(211, 141, 196) 60%,
+    rgb(120, 64, 109) 100%
   );
   /* background-color: #f9f7fe;
       background-color: #d38dc4; */
@@ -23,9 +23,9 @@ a {
   max-width: 800px;
   margin: 60px auto;
   padding: 40px;
-  padding-bottom: 600px;
+  padding-bottom: 300px;
   border-radius: 15px;
-  box-shadow: 0 30px 50px rgb(65, 50, 100, 0.3);
+  box-shadow: 0 60px 80px rgb(65, 50, 100, 0.3);
 }
 header {
   border-bottom: 1px solid #f9f7fe;
@@ -39,21 +39,27 @@ header {
   padding: 20px;
   width: 80%;
   border-radius: 15px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  /* outline: 5px solid #78406d; */
 }
 .search-button {
-  color: pink;
+  color: #78406d;
   width: 16%;
   font-size: 16px;
-  background-color: #f9f7fe;
+  background-color: pink;
   border: none;
   padding: 20px 30px;
   line-height: 1;
   border-radius: 15px;
   margin-left: 5px;
+  display: block;
+  margin: 0 auto;
 }
 .search-button:hover {
-  color: #f9f7fe;
-  background-color: pink;
+  color: pink;
+  background-color: #78406d;
 }
 main {
   padding: 30px;
@@ -83,6 +89,7 @@ main {
 .current-temp-value {
   font-size: 80px;
   font-weight: bold;
+  color: rgba(39, 33, 66, 0.9);
 }
 .current-temp-emoji {
   position: relative;
