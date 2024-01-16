@@ -9,16 +9,15 @@ function displayTemp(response) {
   let date = new Date(response.data.time * 1000);
   let iconElement = document.getElementById("weather-icon");
 
-  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="current-temp-emoji"/>`;
-
-  timeElement.innerHTML = formatDate(date);
-  windElement.innerHTML = `${response.data.wind.speed} km/h`;
-  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   cityElement.innerHTML = response.data.city;
-  temperatureElement.innerHTML = `${temperature} °F`;
+  timeElement.innerHTML = formatDate(date);
   descriptionElement.innerHTML =
     response.data.condition.description.charAt(0).toUpperCase() +
     response.data.condition.description.slice(1);
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  windElement.innerHTML = `${response.data.wind.speed} km/h`;
+  temperatureElement.innerHTML = `${temperature} °F`;
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="current-temp-emoji"/>`;
 }
 
 function searchFormSubmit(event) {
