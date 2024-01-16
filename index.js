@@ -7,14 +7,18 @@ function displayTemp(response) {
   let windElement = document.getElementById("wind-description");
   let timeElement = document.getElementById("current-date");
   let date = new Date(response.data.time * 1000);
-  console.log(response.data);
+  let iconElement = document.getElementById("weather-icon");
+
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="current-temp-emoji"/>`;
 
   timeElement.innerHTML = formatDate(date);
   windElement.innerHTML = `${response.data.wind.speed} km/h`;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   cityElement.innerHTML = response.data.city;
-  temperatureElement.innerHTML = temperature;
-  descriptionElement.innerHTML = response.data.condition.description;
+  temperatureElement.innerHTML = `${temperature} °F`;
+  descriptionElement.innerHTML =
+    response.data.condition.description.charAt(0).toUpperCase() +
+    response.data.condition.description.slice(1);
 }
 
 function searchFormSubmit(event) {
@@ -30,6 +34,11 @@ function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
   let day = date.getDay();
+
+  // Convert hours to 12-hour format
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // If hours is 0, set it to 12
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -49,7 +58,7 @@ function formatDate(date) {
   ];
   let formattedDay = days[day];
 
-  return `${formattedDay} ${hours}:${minutes}`;
+  return `${formattedDay} ${hours}:${minutes} ${ampm}`;
 }
 
 let searchForm = document.querySelector("#search-form");

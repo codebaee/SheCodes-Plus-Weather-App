@@ -30,19 +30,21 @@
       <main>
         <div class="current-weather">
           <div class="current-city">
-            <h1 class="city-name" id="current-city">Charlotte</h1>
+            <h1 class="city-name" id="current-city"></h1>
             <p class="city-details">
               <span id="current-date"></span>,
               <span id="weather-description"></span> <br />
-              Humidity:
-              <strong id="humidity-description"></strong>, Wind:
-              <strong id="wind-description"></strong>
+              <span>
+                Humidity:
+                <strong id="humidity-description"></strong>, Wind:
+                <strong id="wind-description"></strong
+              ></span>
             </p>
           </div>
           <div class="current-temp">
-            <span class="current-temp-emoji">🌦</span
-            ><span class="current-temp-value" id="current-temperature">71</span
-            ><span class="current-temp-unit">°F</span>
+            <span id="weather-icon"></span>
+            <span class="current-temp-value" id="current-temperature">71</span>
+            <!-- <span class="current-temp-unit">°F</span> -->
           </div>
         </div>
       </main>
