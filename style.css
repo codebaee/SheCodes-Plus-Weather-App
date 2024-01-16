@@ -102,6 +102,11 @@ main {
   position: relative;
   top: -40px;
 }
+#humidity-description,
+#wind-description {
+  color: #f9f7fe;
+}
+
 footer {
   text-align: center;
   color: rgba(39, 33, 66, 0.9);
