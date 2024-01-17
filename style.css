@@ -97,7 +97,7 @@ main {
   padding: 30px;
 }
 .current-temp-value {
-  font-size: 47px;
+  font-size: 35px;
   font-weight: bold;
   color: rgba(39, 33, 66, 0.9);
 }
