@@ -66,3 +66,33 @@ searchForm.addEventListener("submit", searchFormSubmit);
 // let currentDateElement = document.getElementById("current-date");
 // let currentDate = new Date();
 // currentDateElement.innerHTML = formatDate(currentDate);
+
+function displayForecast() {
+  let forecastElement = document.getElementById("forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+
+  let forecastHTML = "";
+
+  days.forEach(function (days) {
+    forecastHTML += `
+            <div class="weather-forecast-date">
+              <div class="row">
+                <div class="col-2">
+                  ${days}
+                  <img
+                    src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-night.png"
+                  />
+                  <div class="weather-forecast-temp">
+                    <span class="weather-forecast-max">18°</span>
+                    <span class="weather-forecast-min">12°</span>
+                  </div>
+                </div>
+                </div>
+                </div>
+             `;
+  });
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
