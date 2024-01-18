@@ -19,13 +19,17 @@ function displayTemp(response) {
   temperatureElement.innerHTML = `${temperature} °F`;
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="current-temp-emoji"/>`;
 
+  // Clear search input
+  let searchInputElement = document.getElementById("search-input");
+  searchInputElement.value = "";
+
   getForecast(response.data.city);
 }
-
-function searchFormSubmit(event) {
+const defaultCity = "Charlotte";
+function searchFormSubmit(event, userCity) {
   event.preventDefault();
   let searchInputElement = document.getElementById("search-input");
-  let city = searchInputElement.value;
+  const city = userCity || searchInputElement.value || defaultCity;
   let apiKey = "d010da332cob3740f398ft7aa7bdef74";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayTemp);
@@ -65,46 +69,61 @@ function formatDate(date) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchFormSubmit);
 
+document.addEventListener("DOMContentLoaded", function () {
+  searchFormSubmit(new Event("submit"));
+});
 // let currentDateElement = document.getElementById("current-date");
 // let currentDate = new Date();
 // currentDateElement.innerHTML = formatDate(currentDate);
 //
 //
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   let apiKey = "d010da332cob3740f398ft7aa7bdef74";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=imperial`;
   axios(apiUrl).then(displayForecast);
+  //  axios(apiUrl).then((response) => displayForecast(response));
 }
 
 function displayForecast(response) {
-  console.log(response);
-
-  let forecastElement = document.getElementById("forecast");
-
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed"];
+  console.log(response.data);
+  // Start from the second day, get the next 6 days
+  let days = response.data.daily.slice(1, 7);
 
   let forecastHTML = "";
 
-  days.forEach(function (days) {
+  response.data.daily.forEach(function (day, index) {
     forecastHTML += `
             <div class="weather-forecast-date">
               <div class="row">
                 <div class="col-2">
-                  ${days}
+                 ${formatDay(day.time)}
                   <img
-                    src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-night.png"
+                    src="${day.condition.icon_url}"
                   />
+                  
                   <div class="weather-forecast-temp">
-                    <span class="weather-forecast-max">18°</span>
-                    <span class="weather-forecast-min">12°</span>
+                    <span class="weather-forecast-max">${Math.round(
+                      day.temperature.maximum
+                    )}°</span>
+                    <span class="weather-forecast-min">${Math.round(
+                      day.temperature.minimum
+                    )}°</span><div class="forecastDescription">${
+      day.condition.description
+    }</div>
                   </div>
                 </div>
                 </div>
                 </div>
              `;
   });
+  let forecastElement = document.getElementById("forecast");
   forecastElement.innerHTML = forecastHTML;
 }
-
-displayForecast();

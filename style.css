@@ -45,10 +45,10 @@ header {
   /* outline: 5px solid #78406d; */
 }
 .search-button {
-  color: #78406d;
+  color: rgba(39, 33, 66, 0.9);
+  background-color: #f9f7fe;
   width: 16%;
   font-size: 16px;
-  background-color: pink;
   border: none;
   padding: 20px 30px;
   line-height: 1;
@@ -58,8 +58,8 @@ header {
   margin: 0 auto;
 }
 .search-button:hover {
-  color: pink;
-  background-color: #78406d;
+  color: #f9f7fe;
+  background-color: rgba(39, 33, 66, 0.9);
 }
 main {
   padding: 30px;
@@ -129,7 +129,7 @@ footer {
   color: rgba(39, 33, 66, 0.9);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 }
 .col-2,
 .col-3,
@@ -140,7 +140,7 @@ footer {
 .col-8 {
   display: flex;
   flex-direction: column;
-  width: 60px;
+  width: 80px;
   text-align: center;
   font-size: 20px;
 }
@@ -154,7 +154,7 @@ footer {
   background-color: #f9f7fe;
   border-radius: 6px;
   transition: all ease-in-out 250ms;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .row {
   display: flex;
@@ -171,6 +171,11 @@ footer {
 }
 .weather-forecast-min {
   font-weight: 300;
-  opacity: 0.6;
-  color: #f9f7fe;
+  opacity: 0.8;
+  color: rgba(39, 33, 66, 0.9);
+}
+.forecastDescription {
+  font-size: 12px !important;
+  padding: 10px;
+  text-align: center;
 }
